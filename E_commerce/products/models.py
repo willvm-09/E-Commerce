@@ -11,3 +11,6 @@ class Product (models.Model):
     image = models.URLField(max_length=500)
     Created_Date = models.DateField(auto_now_add=True)
 
+def __str__(self):
+        return self.name
+
