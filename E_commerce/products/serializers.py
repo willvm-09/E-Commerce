@@ -1,8 +1,12 @@
 from rest_framework import serializers
-from .models import Product
-from .models import Order
+from .models import Product, Order, Category
 
 #A serializer for the product model to handle validation and data transformation:
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fiedls = ['name']
+
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
