@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Product
+from .models import Order
 
 #A serializer for the product model to handle validation and data transformation:
 
@@ -8,12 +9,10 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'name', 'description', 'price', 'category', 'stock_quantity', 'image_url', 'created_date']
     
-    def validate_price(self, value):
-        if value <= 0:
-            raise serializers.ValidationError("Price must be greater than zero.")
-        return value
-    
-    def validate_stock_quantity(self, value):
-        if value < 0:
-            raise serializers.ValidationError("Stock Quantity cannot be negative.")
-        return value
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id', 'product', 'quantity', 'order_date']
+
