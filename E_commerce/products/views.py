@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import Product, Order
-from .serializers import ProductSerializer, OrderSerializer
+from .models import Product, Order, Category
+from .serializers import ProductSerializer, OrderSerializer, CategorySerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
@@ -28,8 +28,8 @@ class OrderViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
     def get(self, request):
         return Response({"message": "You are authenticated and can see this message!"})
