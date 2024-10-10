@@ -1,6 +1,12 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
+class Category(models.Model):
+     name = models.CharField(max_length=255, unique=True)
+
+     def __str__(self):
+          return self.name
+
 # Validator function 
 def price_check(price):
         if price < 0:
@@ -11,7 +17,7 @@ class Product (models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, validators=[price_check])
-    category = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     stock_quantity = models.PositiveIntegerField()
     image_url = models.URLField(max_length=500)
     created_date = models.DateField(auto_now_add=True)
