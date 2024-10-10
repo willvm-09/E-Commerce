@@ -24,6 +24,15 @@ class OrderViewSet(viewsets.ModelViewSet):
 
     def get(self, request):
         return Response({"message": "You are authenticated and can see this message!"})
+    
+class CategoryViewSet(viewsets.ModelViewSet):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    def get(self, request):
+        return Response({"message": "You are authenticated and can see this message!"})
 
 
 
