@@ -7,6 +7,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.decorators import api_view
+
 
 class ProductViewSet(viewsets.ModelViewSet):
     authentication_classes = [JWTAuthentication]
